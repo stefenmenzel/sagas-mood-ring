@@ -1,0 +1,16 @@
+.carouselContainer{
+    height: 40%;
+    width: 60%;
+    display: block;
+    margin:auto;
+}
+
+.carouselImageContainer{
+    width: 100%;
+    height:80%;
+}
+
+.carouselImage{
+    max-height: 100%;
+    max-width: 100%;
+}
