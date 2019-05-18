@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+import TagSelector from '../TagSelector/TagSelector.js';
+import '../FeelyImageCarousel/FeelyImageCarousel.css';
+
 class FeelyImageCarousel extends Component{
 
     state = {
@@ -11,10 +14,27 @@ class FeelyImageCarousel extends Component{
     //     this.props.dispatch({type:'FETCH_IMAGES'});
     // }
 
+    //tidies up the image tag we want to render.
     renderImage = () => {
         return(
+            <div className='carouselContainer'>
+                <div className='carouselImageContainer'>
+                    <img className='carouselImage' src={this.props.images[this.state.currentImageIndex].path} alt='' />        
+                </div>
+                <div className='carouselButtonContainer'>    
+                    <button onClick={() => this.adjustIndex('decrease')}>Previous</button>
+                    <button onClick={() => this.adjustIndex('increase')}>Next</button>
+                </div>
+            </div>
+        )
+    }
+
+    //wait for data from the database before rendering image
+    conditionalImage = () => {
+        return(
             (this.props.images.length > 0) ?
-            <img src={this.props.images[this.state.currentImageIndex].path} alt=''/> :
+            this.renderImage() :
+            // <img src={this.props.images[this.state.currentImageIndex].path} alt=''/> :
             <div></div>
         )
     }
@@ -49,11 +69,9 @@ class FeelyImageCarousel extends Component{
         console.log("image 0 path is:", this.props.images[0]);
         return(
             <div>
-                <pre>{JSON.stringify(this.props.images[0])}</pre>
-                <button onClick={() => this.adjustIndex('decrease')}>Previous</button>
-                {this.renderImage()}
-                <button onClick={() => this.adjustIndex('increase')}>Next</button>
-                {/* <img src={this.props.images[this.state.currentImageIndex].path} alt=''/> */}
+                <pre>{JSON.stringify(this.props.images[0])}</pre>                
+                {this.conditionalImage()}
+                <TagSelector currentImageIndex={this.state.currentImageIndex}/>                              
             </div>
         )
     }
