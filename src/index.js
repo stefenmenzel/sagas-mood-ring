@@ -17,6 +17,7 @@ function* rootSaga() {
     console.log('saga is always watching');
     yield takeEvery('FETCH_IMAGES', getImages);
     yield takeEvery('FETCH_TAGS', getTags);
+    yield takeEvery('ADD_NEW_TAG', addTag);
 }
 
 function* getImages(){
@@ -34,6 +35,15 @@ function* getTags(){
         yield dispatch({type: 'SET_TAGS', payload: tagsResponse});
     }catch(err){
         console.log('Error in GET tags request:', err);
+    };
+}
+
+function* addTag(action){
+    try{
+        yield axios.post('/api/images/addtag', action.payload);
+        yield dispatch({type: 'FETCH_TAGS'});
+    }catch(err){
+        console.log('Error in POST tag request:', err);
     };
 }
 
