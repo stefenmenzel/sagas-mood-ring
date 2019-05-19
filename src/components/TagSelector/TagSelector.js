@@ -9,13 +9,14 @@ class TagSelector extends Component{
 
     addTag = (event) => {
         event.preventDefault();
+        console.log("button to add tag has been poked");
         this.props.dispatch({type: 'ADD_NEW_TAG', 
             payload: {image_id: this.props.currentImageIndex, tag_id: this.state.tagToAdd}});
     }
 
     conditionalOptions = () => {
         return(
-            (this.props.tags.length) ?
+            (this.props.tags.data) ?
             (this.props.tags.data.map(tag => 
                 <option key={tag.id} value={tag.name} label={tag.name} /> )) :
             ''
@@ -28,11 +29,10 @@ class TagSelector extends Component{
         });
     }
 
-    render(){
-
-        console.log('tags.data:', this.props.tags);
+    render(){                
         return(
             <div>
+                <pre>{JSON.stringify(this.props.tags.data)}</pre>
                 <form onSubmit={this.addTag}>
                     <div>
                         <p>Tags</p>

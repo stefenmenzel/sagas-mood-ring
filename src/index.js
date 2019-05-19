@@ -40,6 +40,7 @@ function* getTags(){
 
 function* addTag(action){
     try{
+        console.log('in add tag with the payload:', action.payload);
         yield axios.post('/api/images/addtag', action.payload);
         yield dispatch({type: 'FETCH_TAGS'});
     }catch(err){
