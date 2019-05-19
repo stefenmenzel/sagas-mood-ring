@@ -4,37 +4,44 @@ import {connect} from 'react-redux';
 class TagSelector extends Component{
 
     state = {
-        tagToAdd: ''
+        tagToAdd: 0
     };
+
+    // componentWillMount(){
+    //     this.props.dispatch({type: 'FETCH_APPLIED_TAGS', payload: {id: this.props.currentImageIndex}});
+    // }
 
     addTag = (event) => {
         event.preventDefault();
         console.log("button to add tag has been poked");
         this.props.dispatch({type: 'ADD_NEW_TAG', 
-            payload: {image_id: this.props.currentImageIndex, tag_id: this.state.tagToAdd}});
+            payload: {image_id: this.props.currentImageIndex, tag_id: this.state.tagToAdd}});             
     }
 
     conditionalOptions = () => {
         return(
             (this.props.tags.data) ?
-            (this.props.tags.data.map(tag => 
-                <option key={tag.id} value={tag.name} label={tag.name} /> )) :
+            this.props.tags.data.map(tag => 
+                <option key={tag.id} value={tag.id} label={tag.name} /> ) :
             ''
         )
     }
 
-    handleChange = (event) => {
+    handleChange = (event) => {        
         this.setState({
             tagToAdd: event.target.value
         });
     }
 
-    render(){                
+    render(){
+        console.log('tagToAdd has been changed to:', this.state.tagToAdd);
+        // this.props.dispatch({type:'FETCH_APPLIED_TAGS', payload: {id: this.props.currentImageIndex}});
         return(
             <div>
-                <pre>{JSON.stringify(this.props.tags.data)}</pre>
+                {/* <pre>{JSON.stringify(this.props.tags.data)}</pre> */}
                 <form onSubmit={this.addTag}>
                     <div>
+                        <pre>{JSON.stringify(this.props.appliedTags)}</pre>
                         <p>Tags</p>
                         <p>tags will go here</p>
                     </div>
@@ -50,7 +57,8 @@ class TagSelector extends Component{
 
 const mapStateToProps = (reduxState) => {
     return {
-        tags: reduxState.tags
+        tags: reduxState.availableTags,
+        appliedTags: reduxState.appliedTags,
     };
 };
 

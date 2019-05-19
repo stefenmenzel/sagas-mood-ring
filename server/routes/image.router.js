@@ -18,6 +18,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/addtag', (req, res) => {
+    console.log("made it to /addtag biatch...we here with:", req.body);
     let sqlQuery = `
         INSERT INTO "images_tags" ("image_id", "tag_id")
         SELECT $1,$2
