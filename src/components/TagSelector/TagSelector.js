@@ -7,6 +7,10 @@ class TagSelector extends Component{
         tagToAdd: 0
     };
 
+    componentDidMount(){
+        this.props.dispatch({type: 'FETCH_APPLIED_TAGS', payload: {id: this.props.currentImageIndex}});
+    }
+
     addTag = (event) => {
         event.preventDefault();
         console.log("button to add tag has been poked");
@@ -36,6 +40,7 @@ class TagSelector extends Component{
                 <pre>{JSON.stringify(this.props.tags.data)}</pre>
                 <form onSubmit={this.addTag}>
                     <div>
+                        <pre>{JSON.stringify(this.props.appliedTags)}</pre>
                         <p>Tags</p>
                         <p>tags will go here</p>
                     </div>
@@ -51,7 +56,8 @@ class TagSelector extends Component{
 
 const mapStateToProps = (reduxState) => {
     return {
-        tags: reduxState.tags
+        tags: reduxState.availableTags,
+        appliedTags: reduxState.appliedTags,
     };
 };
 
