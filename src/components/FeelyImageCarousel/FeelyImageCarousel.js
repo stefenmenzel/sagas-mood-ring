@@ -33,8 +33,7 @@ class FeelyImageCarousel extends Component{
     conditionalImage = () => {
         return(
             (this.props.images.length > 0) ?
-            this.renderImage() :
-            // <img src={this.props.images[this.state.currentImageIndex].path} alt=''/> :
+            this.renderImage() :            
             <div></div>
         )
     }
@@ -69,7 +68,7 @@ class FeelyImageCarousel extends Component{
         console.log("image 0 path is:", this.props.images[0]);
         return(
             <div>
-                <pre>{JSON.stringify(this.props.images[0])}</pre>                
+                <pre>{JSON.stringify(this.props.images)}</pre>                
                 {this.conditionalImage()}
                 <TagSelector currentImageIndex={this.state.currentImageIndex}/>                              
             </div>
