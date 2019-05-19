@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 
 router.get('/applied', (req, res) => {
     let sqlQuery = `
-        SELECT "tags"."name" FROM "tags"
+        SELECT "tags"."id", "tags"."name" FROM "tags"
         JOIN "images_tags" ON "tags"."id" = "images_tags"."tag_id"
         WHERE "image_id" = $1;
     `

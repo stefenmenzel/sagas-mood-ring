@@ -43,7 +43,11 @@ class TagSelector extends Component{
                     <div>
                         <pre>{JSON.stringify(this.props.appliedTags)}</pre>
                         <p>Tags</p>
-                        <p>tags will go here</p>
+                        <ul>
+                            {this.props.appliedTags.map(tag => {
+                                return <li key={tag.id}>{tag.name}</li>
+                            })}
+                        </ul>
                     </div>
                     <select onChange={this.handleChange}>
                         {this.conditionalOptions()}
