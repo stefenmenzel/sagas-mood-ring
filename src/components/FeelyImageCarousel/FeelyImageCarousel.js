@@ -70,7 +70,7 @@ class FeelyImageCarousel extends Component{
             <div>
                 <pre>{JSON.stringify(this.props.images)}</pre>                
                 {this.conditionalImage()}
-                <TagSelector currentImageIndex={this.state.currentImageIndex}/>                              
+                <TagSelector currentImageIndex={this.state.currentImageIndex+1}/>                              
             </div>
         )
     }

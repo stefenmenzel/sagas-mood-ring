@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 class TagSelector extends Component{
 
     state = {
-        tagToAdd: ''
+        tagToAdd: 0
     };
 
     addTag = (event) => {
@@ -17,19 +17,20 @@ class TagSelector extends Component{
     conditionalOptions = () => {
         return(
             (this.props.tags.data) ?
-            (this.props.tags.data.map(tag => 
-                <option key={tag.id} value={tag.name} label={tag.name} /> )) :
+            this.props.tags.data.map(tag => 
+                <option key={tag.id} value={tag.id} label={tag.name} /> ) :
             ''
         )
     }
 
-    handleChange = (event) => {
+    handleChange = (event) => {        
         this.setState({
             tagToAdd: event.target.value
         });
     }
 
-    render(){                
+    render(){
+        console.log('tagToAdd has been changed to:', this.state.tagToAdd);
         return(
             <div>
                 <pre>{JSON.stringify(this.props.tags.data)}</pre>
