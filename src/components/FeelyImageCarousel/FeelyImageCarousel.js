@@ -10,9 +10,9 @@ class FeelyImageCarousel extends Component{
         currentImageIndex: 0
     }
 
-    // componentDidMount(){
-    //     this.props.dispatch({type:'FETCH_IMAGES'});
-    // }
+    componentDidMount(){
+        this.props.dispatch({ type: 'FETCH_APPLIED_TAGS', payload: { id: this.state.currentImageIndex+1 } });
+    }
 
     //tidies up the image tag we want to render.
     renderImage = () => {
@@ -39,33 +39,31 @@ class FeelyImageCarousel extends Component{
     }
 
     adjustIndex = (incrementOrDecrement) => {
+        let newIndex = this.state.currentImageIndex;
         if(incrementOrDecrement === 'increase'){
             if(this.state.currentImageIndex+1 > this.props.images.length-1)
-            this.setState({
-                currentImageIndex: 0
-            });
+            newIndex = 0;
             else{
-                this.setState({
-                    currentImageIndex: this.state.currentImageIndex+1
-                })
-            }
+                newIndex++;
+            }            
         }
         else{
             if(this.state.currentImageIndex-1 < 0){
-                this.setState({
-                    currentImageIndex: this.props.images.length-1
-                });
+                newIndex = this.props.images.length-1;
             }
             else{
-                this.setState({
-                    currentImageIndex: this.state.currentImageIndex - 1
-                });
+                newIndex--;
             }            
         }
+        this.setState({
+            currentImageIndex: newIndex
+        });
+        this.props.dispatch({ type: 'FETCH_APPLIED_TAGS', payload: { id: newIndex+1 } });
     }
 
     render(){
-        console.log("image 0 path is:", this.props.images[0]);
+        console.log('the current image index is:', this.state.currentImageIndex);
+        // this.props.dispatch({type: 'FETCH_APPLIED_TAGS', payload: {id: this.state.currentImageIndex+1}});
         return(
             <div>
                 <pre>{JSON.stringify(this.props.images)}</pre>                
@@ -79,7 +77,7 @@ class FeelyImageCarousel extends Component{
 const mapStateToProps = (reduxState) => {
     return {
         images: reduxState.images,
-        tags: reduxState.tags
+        tags: reduxState.appliedTags
     };
 };
 

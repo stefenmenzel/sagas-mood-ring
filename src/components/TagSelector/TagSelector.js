@@ -7,15 +7,15 @@ class TagSelector extends Component{
         tagToAdd: 0
     };
 
-    componentDidMount(){
-        this.props.dispatch({type: 'FETCH_APPLIED_TAGS', payload: {id: this.props.currentImageIndex}});
-    }
+    // componentWillMount(){
+    //     this.props.dispatch({type: 'FETCH_APPLIED_TAGS', payload: {id: this.props.currentImageIndex}});
+    // }
 
     addTag = (event) => {
         event.preventDefault();
         console.log("button to add tag has been poked");
         this.props.dispatch({type: 'ADD_NEW_TAG', 
-            payload: {image_id: this.props.currentImageIndex, tag_id: this.state.tagToAdd}});
+            payload: {image_id: this.props.currentImageIndex, tag_id: this.state.tagToAdd}});             
     }
 
     conditionalOptions = () => {
@@ -35,9 +35,10 @@ class TagSelector extends Component{
 
     render(){
         console.log('tagToAdd has been changed to:', this.state.tagToAdd);
+        // this.props.dispatch({type:'FETCH_APPLIED_TAGS', payload: {id: this.props.currentImageIndex}});
         return(
             <div>
-                <pre>{JSON.stringify(this.props.tags.data)}</pre>
+                {/* <pre>{JSON.stringify(this.props.tags.data)}</pre> */}
                 <form onSubmit={this.addTag}>
                     <div>
                         <pre>{JSON.stringify(this.props.appliedTags)}</pre>

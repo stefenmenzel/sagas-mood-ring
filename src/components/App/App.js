@@ -9,7 +9,7 @@ class App extends Component {
 
   componentWillMount(){
     this.props.dispatch({type: 'FETCH_IMAGES'});
-    this.props.dispatch({type: 'FETCH_TAGS'});    
+    this.props.dispatch({type: 'FETCH_TAGS'});
   }
 
   // Renders the entire app on the DOM

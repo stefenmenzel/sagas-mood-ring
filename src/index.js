@@ -53,7 +53,7 @@ function* addTag(action){
     try{
         console.log('in add tag with the payload:', action.payload);
         yield axios.post('/api/images/addtag', action.payload);
-        yield dispatch({type: 'FETCH_TAGS'});
+        yield dispatch({type: 'FETCH_APPLIED_TAGS', payload: {id: action.payload.image_id}});   
     }catch(err){
         console.log('Error in POST tag request:', err);
     };
@@ -82,6 +82,7 @@ const availableTags = (state = [], action) => {
     }
 }
 
+//this will store the applied tags to the image that is currently visible
 const appliedTags = (state = [], action) => {
     switch (action.type) {
         case 'SET_APPLIED_TAGS':
