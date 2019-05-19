@@ -22,8 +22,8 @@ class FeelyImageCarousel extends Component{
                     <img className='carouselImage' src={this.props.images[this.state.currentImageIndex].path} alt='' />        
                 </div>
                 <div className='carouselButtonContainer'>    
-                    <button onClick={() => this.adjustIndex('decrease')}>Previous</button>
-                    <button onClick={() => this.adjustIndex('increase')}>Next</button>
+                    <button className='imageSelectorButton decreaseButton' onClick={() => this.adjustIndex('decrease')}>Previous</button>
+                    <button className='imageSelectorButton increaseButton' onClick={() => this.adjustIndex('increase')}>Next</button>
                 </div>
             </div>
         )
@@ -65,8 +65,8 @@ class FeelyImageCarousel extends Component{
         console.log('the current image index is:', this.state.currentImageIndex);
         // this.props.dispatch({type: 'FETCH_APPLIED_TAGS', payload: {id: this.state.currentImageIndex+1}});
         return(
-            <div>
-                <pre>{JSON.stringify(this.props.images)}</pre>                
+            <div className='fullContainer'>
+                {/* <pre>{JSON.stringify(this.props.images)}</pre>                 */}
                 {this.conditionalImage()}
                 <TagSelector currentImageIndex={this.state.currentImageIndex+1}/>                              
             </div>

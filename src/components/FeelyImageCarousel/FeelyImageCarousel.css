@@ -1,8 +1,14 @@
+.fullContainer{
+    height: 80%;
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
 .carouselContainer{
     height: 40%;
-    width: 60%;
-    display: block;
-    margin:auto;
+    width: 60%;    
+    margin:auto;    
 }
 
 .carouselImageContainer{
@@ -13,4 +19,20 @@
 .carouselImage{
     max-height: 100%;
     max-width: 100%;
+}
+
+.carouselButtonContainer{
+    margin-bottom: 20px;
+}
+
+.imageSelectorButton{
+    width:25%;
+}
+
+.decreaseButton{
+    float: left;
+}
+
+.increaseButton{
+    float:right;
 }
