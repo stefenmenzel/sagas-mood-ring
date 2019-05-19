@@ -1,0 +1,29 @@
+.tagContainer{
+    width: 60%;
+    height: 100%;
+    display:block;
+    margin: auto;
+    margin-top: 25px;
+}
+
+.tagList{
+    display: inline-block;
+    text-align: left;
+    float:left;
+}
+
+.tagList ul{
+    list-style: none;
+}
+
+.fullContainer{
+    height:80%;
+}
+
+.addTagContainer{
+    float:right;
+}
+
+.addTagDropDown{
+    margin-right: 10px;
+}

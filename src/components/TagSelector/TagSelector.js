@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+import '../TagSelector/TagSelector.css';
+
 class TagSelector extends Component{
 
     state = {
@@ -37,11 +39,11 @@ class TagSelector extends Component{
         console.log('tagToAdd has been changed to:', this.state.tagToAdd);
         // this.props.dispatch({type:'FETCH_APPLIED_TAGS', payload: {id: this.props.currentImageIndex}});
         return(
-            <div>
+            <div className="tagContainer">
                 {/* <pre>{JSON.stringify(this.props.tags.data)}</pre> */}
                 <form onSubmit={this.addTag}>
-                    <div>
-                        <pre>{JSON.stringify(this.props.appliedTags)}</pre>
+                    <div className='tagList'>
+                        {/* <pre>{JSON.stringify(this.props.appliedTags)}</pre> */}
                         <p>Tags</p>
                         <ul>
                             {this.props.appliedTags.map(tag => {
@@ -49,10 +51,12 @@ class TagSelector extends Component{
                             })}
                         </ul>
                     </div>
-                    <select onChange={this.handleChange}>
-                        {this.conditionalOptions()}
-                    </select>
-                    <button type="submit">Add Tag</button>
+                    <div className="addTagContainer">
+                        <select className='addTagDropDown' onChange={this.handleChange}>
+                            {this.conditionalOptions()}
+                        </select>
+                        <button type="submit">Add Tag</button>
+                    </div>                    
                 </form>
             </div>
         )
