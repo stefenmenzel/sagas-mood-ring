@@ -1,92 +1,51 @@
-# React-Redux with Sagas
+# The Mood Ring
 
-> **PLEASE COMMENT YOUR CODE.** Do not clone this repository. Instead, download the zip, extract the contents, `git init`, `git add .`, `git commit -m "initial commit - base project"` and add your remote. Please do this before you leave for the day.
+This is an image tagging form. It asks the user to cycle through a carousel of images and apply tags as to how each image makes them feel. The applied tags then get sent to a database to be stored and recalled every time an image is loaded. All of the images paths being displayed are pulled from a database. All of the tags the user can choose from are being pulled from a database. I also added a nice css animation for the image transition.
 
-For this weekend challenge you'll be building a mindfulness application: an image carousel tagging app!  
+## Built With
+This project uses html/css, React, Redux, and Saga for the front-end and node.js, and express.js as a server and finally postgresql for a database.
 
-## Database Setup
+## Getting Started
+To get this project running you'll have to:
+* fork and clone this repo. 
+* create a postgresql database using the queries in the 'Database.sql' file (table and inserts only).
+star:
+- You'll want to run a postrgesql server while using this project
+* in the directory you cloned this repo to, you'll need to run `npm install` to get the dependencies installed for this project.
+* once you have your database created and running and you've installed all dependencies, you'll have to run your express server. You should be able to do so by running `npm run server`.
+* Once your server is running, you can run the project in a browser by running `npm run client`
 
-1. Create a database named `saga_weekend`
-2. Run the queries from `database.sql` on the `saga_weekend` database.
-3. You will need to create the junction table between the `images` and `tags` tables! Your app will be populating this new table.
+## Prerequisites
+In order to run this project you'll need to install:
 
-## Install Dependencies
+* [node.js](https://nodejs.org/en/) 
+* [express.js](https://expressjs.com/) 
+* [react](https://reactjs.org/) 
+* [redux](https://redux.js.org/)
+* [saga](https://redux-saga.js.org/)
+* [postgres](https://www.postgresql.org/) and 
+* [pg](https://node-postgres.com/)
+* All of these can also be installed using NPM (this is my preferred method)
+* [NPM](https://www.npmjs.com/)
 
-1. `npm install`
-2. `npm run server`
-3. `npm run client`
+## Installing
+* Download this project.
+* install prerequisite libraries listed above.
+* run `npm install` from project directory in terminal
+* run `npm run server` to start your express server
+* run `npm run client` to open this project up in a browser
 
-## Notes
+## Screen Shot
+![Screenshot](ScreenShot.png)
 
-### Tags
+## Completed Features
+* Developed react components that display on the DOM
+* The DOM displays an image and buttons to switch between them.
+* The DOM displays the currently applied tags on the current visible image and allows you to select a new tag to add.
+* All image paths are stored on a postresql database and are collected when the page loads.
+* All the available tags to assign are stored in the database and retrieved on page load/when a new image is selected.
+* All applied tags are displayed for the image that is currently visible. These tags are retrieved from the database.
 
-We've given you some starter tags in the database. Feel free to change or add some with Postico.
- 
- ### Images
- We've added some abstract images in the `public/images` folder, and the database is set up to use them.
-
- ### Relationships
- Tags can be applied to many different images. Images can have multiple tags. This is Many-to-Many! Junction Table time!
- 
-
-**Do not implement image upload for base mode.**
-
-
-## Feature List
-
-> NOTE: Start by taking inventory of the existing code. Part of the work for setting up sagas has been done for you.
-
-## Back-End
-
-### Database
-- [x] Create Tag, Image tables 
-- [ ] Create a Junction Table for storing the tags associated with the images
-
-### Routes
-Feel free to make up your own. You may need others beyond these:
-
-- [ ] GET `/api/tags` -- Should return all tags
-- [ ] GET `/api/images` -- Should return all images and the tags associated with each image (JOIN!)
-- [ ] POST `/api/images/addtag` -- Should add a tag associated with an image to your junction table.
-
-
-## Front-End
-
-### Carousel 
-
-** DO NOT USE ANY PREBUILT CAROUSEL NOR CAROUSEL-ISH (MUI STEPPER) THING **
-
-You can build this! Other components from Material-UI are fine.
-
-- [ ] Client-side view that displays a single image at a time, using data from database.
-- [ ] Each image should have an ability to cycle through to the next/previous image. These should always work -- if you hit next on the last picture, it should go to the first image.
-- [ ] With each image, users should be able to assign tags to the current image and save in the database. For base mode, duplicate tags are fine.
-- [ ] Use Sagas for API requests to your server
-
-
-### General Tasks
-
-- [ ] Commit your code frequently! You should have at 15+ commits on a project of this size. Use branches to help break down your features.
-- [ ] Comment your code.
-- [ ] Update this README to include a description of the project in your own words.
-
-## Wireframes
-
-> NOTE: Feel free to modify the styling and layout of content on the page. 
-
-### Main View
-
-<img src="wireframes/carousel-page.png" width="800">
-
-
-## Stretch Goals
-
-- [ ] Animate it -- Look into transitions -- give us a nice fade in/out, or slide in, or something aesthetically pleasing
-- [ ] Allow users to delete tags from an image.
-- [ ] Give each tag associated to an image a different color
-- [ ] Improve styling on the page using Material UI
-  - [ ] Make it Responsive (Research Grid)
-  - [ ] Give it a theme
-- [ ] Create a view that can pull statistics -- How many images have X tag, for example. Think about the data you can access!
-- [ ] Implement a form to add new tags and/or images
+## Author
+[Stefen Menzel](https://github.com/stefenmenzel)
 
