@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Button} from '@material-ui/core';
 
 import TagSelector from '../TagSelector/TagSelector.js';
 import '../FeelyImageCarousel/FeelyImageCarousel.css';
@@ -14,16 +15,42 @@ class FeelyImageCarousel extends Component{
         this.props.dispatch({ type: 'FETCH_APPLIED_TAGS', payload: { id: this.state.currentImageIndex+1 } });
     }
 
+    slideWidth = () => {
+        return document.querySelector('.carouselImage').clientWidth;
+    }
+
+    doLeftSlideOut = () => {
+        let element = document.querySelector('.carouselImage');
+        element.classList.remove('imageLeftSlideIn');
+        element.classList.remove('imageRightSlideIn');
+        element.classList.add('imageLeftSlideOut');
+        setTimeout(() => {
+            element.classList.remove('imageLeftSlideOut');
+            element.classList.add('imageLeftSlideIn');
+        }, 300);
+    }
+
+    doRightSlideOut = () => {
+        let element = document.querySelector('.carouselImage');
+        element.classList.remove('imageLeftSlideIn');
+        element.classList.remove('imageRightSlideIn')
+        element.classList.add('imageRightSlideOut');
+        setTimeout(() => {
+            element.classList.remove('imageRightSlideOut');
+            element.classList.add('imageRightSlideIn');
+        }, 300);
+    }
+
     //tidies up the image tag we want to render.
     renderImage = () => {
         return(
             <div className='carouselContainer'>
                 <div className='carouselImageContainer'>
-                    <img className='carouselImage' src={this.props.images[this.state.currentImageIndex].path} alt='' />        
+                    <img onClick={this.slideWidth} className='carouselImage imageLeftSlideIn' src={this.props.images[this.state.currentImageIndex].path} alt='' />        
                 </div>
                 <div className='carouselButtonContainer'>    
-                    <button className='imageSelectorButton decreaseButton' onClick={() => this.adjustIndex('decrease')}>Previous</button>
-                    <button className='imageSelectorButton increaseButton' onClick={() => this.adjustIndex('increase')}>Next</button>
+                    <Button variant="contained" className='imageSelectorButton decreaseButton' onClick={() => this.adjustIndex('decrease')}>Previous</Button>
+                    <Button variant="contained" className='imageSelectorButton increaseButton' onClick={() => this.adjustIndex('increase')}>Next</Button>
                 </div>
             </div>
         )
@@ -40,12 +67,13 @@ class FeelyImageCarousel extends Component{
 
     adjustIndex = (incrementOrDecrement) => {
         let newIndex = this.state.currentImageIndex;
-        if(incrementOrDecrement === 'increase'){
+        if(incrementOrDecrement === 'increase'){            
             if(this.state.currentImageIndex+1 > this.props.images.length-1)
             newIndex = 0;
             else{
                 newIndex++;
-            }            
+            }
+            this.doLeftSlideOut();
         }
         else{
             if(this.state.currentImageIndex-1 < 0){
@@ -53,12 +81,20 @@ class FeelyImageCarousel extends Component{
             }
             else{
                 newIndex--;
-            }            
+            }
+            this.doRightSlideOut();  
         }
-        this.setState({
-            currentImageIndex: newIndex
-        });
-        this.props.dispatch({ type: 'FETCH_APPLIED_TAGS', payload: { id: newIndex+1 } });
+
+        setTimeout(() => {
+            this.setState({
+                currentImageIndex: newIndex
+            });
+            this.props.dispatch({ type: 'FETCH_APPLIED_TAGS', payload: { id: newIndex + 1 } }); 
+        }, 300);
+        // this.setState({
+        //     currentImageIndex: newIndex
+        // });
+        // this.props.dispatch({ type: 'FETCH_APPLIED_TAGS', payload: { id: newIndex+1 } });
     }
 
     render(){
@@ -67,7 +103,7 @@ class FeelyImageCarousel extends Component{
         return(
             <div className='fullContainer'>
                 {/* <pre>{JSON.stringify(this.props.images)}</pre>                 */}
-                {this.conditionalImage()}
+                {this.conditionalImage()}                
                 <TagSelector currentImageIndex={this.state.currentImageIndex+1}/>                              
             </div>
         )

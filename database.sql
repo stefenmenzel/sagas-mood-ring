@@ -9,6 +9,12 @@ CREATE TABLE "tags" (
   "name" VARCHAR(80) NOT NULL
 );
 
+CREATE TABLE "images_tags" (
+	"id" SERIAL PRIMARY KEY,
+	"image_id" INT REFERENCES "images",
+	"tag_id" INT REFERENCES "tags"
+);
+
 INSERT INTO "images" ("title", "path")
 VALUES 
 ('Abstract Shapes', 'images/AbstractShapes.jpg'),
@@ -24,3 +30,18 @@ VALUES
 ('Inspirational'),
 ('Frantic'),
 ('Vertigo');
+
+INSERT INTO "images_tags" ("image_id", "tag_id")
+SELECT 1,1
+WHERE NOT EXISTS (
+	SELECT * from "images_tags"
+	WHERE(
+		"image_id" = 1
+		AND
+		"tag_id" = 1
+	)
+);
+
+SELECT "tags"."id","tags"."name" FROM "tags"
+JOIN "images_tags" on "tags"."id" = "images_tags"."tag_id"
+WHERE "image_id" = 1;

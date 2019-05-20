@@ -2,8 +2,13 @@
     width: 60%;
     height: 100%;
     display:block;
-    margin: auto;
-    margin-top: 25px;
+    margin: auto;    ;
+}
+
+.tagForm{    
+    display:inline!important;
+    fullWidth: true;
+    
 }
 
 .tagList{
@@ -22,8 +27,19 @@
 
 .addTagContainer{
     float:right;
+    width:65%;
 }
 
 .addTagDropDown{
     margin-right: 10px;
+    width:62%;
+    height:30px;
+    font-size:1.25em;
+}
+
+h2{
+    margin: 0px;
+}
+.tagsHeader{
+    margin: 0px;
 }
