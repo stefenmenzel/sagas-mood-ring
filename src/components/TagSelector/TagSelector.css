@@ -5,6 +5,12 @@
     margin: auto;    ;
 }
 
+.tagForm{    
+    display:inline!important;
+    fullWidth: true;
+    
+}
+
 .tagList{
     display: inline-block;
     text-align: left;
@@ -21,10 +27,14 @@
 
 .addTagContainer{
     float:right;
+    width:65%;
 }
 
 .addTagDropDown{
     margin-right: 10px;
+    width:62%;
+    height:30px;
+    font-size:1.25em;
 }
 
 h2{
