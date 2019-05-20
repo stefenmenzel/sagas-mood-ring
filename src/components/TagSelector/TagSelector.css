@@ -2,8 +2,7 @@
     width: 60%;
     height: 100%;
     display:block;
-    margin: auto;
-    margin-top: 25px;
+    margin: auto;    ;
 }
 
 .tagList{
@@ -26,4 +25,11 @@
 
 .addTagDropDown{
     margin-right: 10px;
+}
+
+h2{
+    margin: 0px;
+}
+.tagsHeader{
+    margin: 0px;
 }

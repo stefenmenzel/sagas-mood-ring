@@ -44,7 +44,7 @@ class TagSelector extends Component{
                 <form onSubmit={this.addTag}>
                     <div className='tagList'>
                         {/* <pre>{JSON.stringify(this.props.appliedTags)}</pre> */}
-                        <p>Tags</p>
+                        <h2 classname="tagsHeader">Tags</h2>
                         <ul>
                             {this.props.appliedTags.map(tag => {
                                 return <li key={tag.id}>{tag.name}</li>
