@@ -7,8 +7,7 @@ import '../TagSelector/TagSelector.css';
 class TagSelector extends Component{
 
     state = {
-        tagToAdd: 0,
-        tagName: ''
+        tagToAdd: 0,        
     };
 
     // componentWillMount(){
@@ -33,8 +32,7 @@ class TagSelector extends Component{
 
     handleChange = (event) => {        
         this.setState({            
-            tagToAdd: event.target.value,
-            tagName: this.props.tags.data[event.target.value].name
+            tagToAdd: event.target.value,            
         });
     }
 
